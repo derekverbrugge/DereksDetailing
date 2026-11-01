@@ -453,10 +453,18 @@ let current="";
 function update() {
   let v=rates[$("vehicle").value],lines=[];
 const add=(n,p)=>lines.push([n,p]);
+/* Show the applicable price beside every quote-builder option. */
+const setLabel=(id,text)=>{$(id).parentElement.lastChild.textContent=" "+text;};
+setLabel("exterior", $("tec582").checked
+  ? "Exterior wash + wheel/brake cleaning ($"+v.exterior+")"
+  : "Exterior wash + 3D Bead It Up ceramic spray + wheel/brake cleaning ($"+v.exterior+")");
+setLabel("tec582","TEC582 premium ceramic protection, finished with 3D Bead It Up (+$25)");
+setLabel("interior","Interior surface detail (+$"+v.interior+")");
+setLabel("plastic","Cerakote plastic restoration (+$"+v.plastic+")");
+setLabel("glass","Glass cleaning + water repellency (+$40)");
+setLabel("rubber","Rubber/tire dressing + UV protection (+$50)");
 /* TEC582 includes the final 3D Bead It Up topper, so avoid listing it twice. */
-$("exterior").parentElement.lastChild.textContent = $("tec582").checked
-  ? " Exterior wash + wheel/brake cleaning"
-  : " Exterior wash + 3D Bead It Up ceramic spray + wheel/brake cleaning";
+
 if($("exterior").checked)add($("tec582").checked?"Exterior wash + wheels/brakes":"Exterior wash + 3D Bead It Up ceramic spray + wheels/brakes",v.exterior);
 if($("interior").checked)add("Interior surface detail",v.interior);
 let h=Number($("headlights").value);
