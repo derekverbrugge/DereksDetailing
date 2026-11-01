@@ -1,27 +1,32 @@
 /**
- * Inject shared navigation and footer HTML.
- * The fragments are requested relative to the GitHub Pages site root.
+ * Load reusable header and footer fragments.
+ * index.html includes a static header fallback, so navigation never depends on fetch.
  */
-async function includePart(elementId, path) {
-  // Always revalidate shared fragments so navigation edits appear promptly.
-  const response = await fetch(path, { cache: "no-store" });
+async function includePart(id, path) {
+  const target = document.getElementById(id);
+  if (!target) return;
 
-  if (!response.ok) {
-    throw new Error("Unable to load " + path + ": HTTP " + response.status);
+  try {
+    const response = await fetch(path, { cache: "no-store" });
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    const markup = await response.text();
+
+    // Only replace a working fallback with a valid, expected fragment.
+    const template = document.createElement("template");
+    template.innerHTML = markup;
+    const expected = id === "site-header" ? "header nav .navlinks" : "footer";
+    if (!template.content.querySelector(expected)) {
+      throw new Error("Invalid " + path + " markup");
+    }
+    target.replaceChildren(template.content.cloneNode(true));
+  } catch (error) {
+    console.warn("Keeping existing layout; could not load " + path, error);
   }
-
-  document.getElementById(elementId).innerHTML = await response.text();
 }
 
-// Load both fragments, then set the current copyright year.
-Promise.all([
-  includePart("site-header", "header.html"),
-  includePart("site-footer", "footer.html")
-])
-  .then(() => {
-    const year = document.getElementById("year");
-    if (year) year.textContent = new Date().getFullYear();
-  })
-  .catch((error) => {
-    console.error("Unable to load shared layout:", error);
-  });
+// Independent requests: failure of one fragment never prevents the other.
+void includePart("site-header", "header.html");
+void includePart("site-footer", "footer.html").then(() => {
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
+});
