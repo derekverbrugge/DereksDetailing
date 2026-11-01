@@ -311,6 +311,16 @@ font-size:12px}
   font-size: clamp(12px, 2.8vw, 15px);
 }
 .hero-note { font-size: 15px; line-height: 1.6; opacity: .85; max-width: 720px; }
+
+/* Lightweight responsive portrait placement: no image JavaScript dependency. */
+.hero-layout { display:grid; grid-template-columns:minmax(0, 1.5fr) minmax(230px, 1fr); gap:clamp(20px,4vw,56px); align-items:center; }
+.hero-copy { min-width:0; }
+.hero-portrait { display:block; width:100%; height:auto; aspect-ratio:1; object-fit:cover; border-radius:22px; }
+.hero-portrait[hidden] { display:none; }
+@media(max-width:700px) {
+  .hero-layout { grid-template-columns:1fr; }
+  .hero-portrait { max-width:400px; margin:0 auto; }
+}
 </style><script src="includes.js?v=20261101-5" defer>
 </script>
 </head>
@@ -333,13 +343,18 @@ font-size:12px}
 </div>
 <main>
 <div class="hero">
-<div class="wrap">
+<div class="wrap hero-layout">
+<div class="hero-copy">
 <div class="eyebrow">
 Manchester, New Hampshire · Hand-finished detailing</div>
 <h1>Clean finish.<br>Clear pricing.</h1>
 <p>Headlight restoration, careful clear-coat scratch reduction, hand washing, ceramic spray protection, and interior surface care—all finished by hand with Chemical Guys and 3D Car Care products. No machine buffing.</p>
 <p class="hero-note">Ceramic spray protection is a spray sealant, not a multi-year coating. Scratch reduction depends on clear-coat condition, and complete removal cannot be guaranteed. Services are subject to vehicle inspection.</p>
-<a class="btn" href="#quote">Build your quote</a></div>
+<a class="btn" href="#quote">Build your quote</a>
+</div>
+<!-- Portrait appears automatically once the image asset is uploaded to assets/. -->
+<img class="hero-portrait" src="assets/derek-flannel.png" alt="Derek wearing his orange and charcoal flannel shirt" width="600" height="600" onerror="this.hidden=true" />
+</div>
 </div>
 <section id="services">
 <div class="wrap">
