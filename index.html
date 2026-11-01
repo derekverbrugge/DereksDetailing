@@ -422,23 +422,5 @@ document.querySelectorAll(".package-card").forEach((card) => {
   });
 });
 </script>
-<script>
 
-/* Correct any previously cached navigation fragment after it is injected. */
-const headerObserver = new MutationObserver(() => {
-  const nav = document.querySelector("#site-header .navlinks");
-  if (!nav) return;
-  const links = nav.querySelectorAll("a");
-  if (links.length >= 3) {
-    links[0].textContent = "Services";
-    links[0].href = "#services";
-    links[1].textContent = "Add-Ons";
-    links[1].href = "#addons";
-    links[2].textContent = "Get a Quote!";
-    links[2].href = "#quote";
-  }
-});
-headerObserver.observe(document.getElementById("site-header"), { childList: true, subtree: true });
-
-</script>
 </body></html>
