@@ -1,5 +1,5 @@
 <!-- Derek's Detailing: one-page service menu and estimate calculator. -->
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0d10"><meta name="description" content="Derek's Detailing in Manchester NH. Hand-finished headlights, scratch reduction, exterior wash, ceramic spray protection and interior surfaces."><title>Derek's Detailing | Manchester NH</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0d10"><meta name="description" content="Derek's Detailing in Manchester NH. Hand-finished headlights, scratch reduction, exterior wash, 3D Bead It Up ceramic spray protection and interior surfaces."><title>Derek's Detailing | Manchester NH</title>
 <style>
 /* Base layout and responsive theme. */
 :root {
@@ -357,8 +357,8 @@ font-size:12px}
 <div class="eyebrow">
 Manchester, New Hampshire · Hand-finished detailing</div>
 <h1>Clean finish.<br>Clear pricing.</h1>
-<p>Headlight restoration, careful clear-coat scratch reduction, hand washing, ceramic spray protection, and interior surface care—all finished by hand with Chemical Guys and 3D Car Care products. No machine buffing.</p>
-<p class="hero-note">Ceramic spray protection is a spray sealant, not a multi-year coating. Scratch reduction depends on clear-coat condition, and complete removal cannot be guaranteed. Services are subject to vehicle inspection.</p>
+<p>Headlight restoration, careful clear-coat scratch reduction, hand washing, 3D Bead It Up ceramic spray protection, and interior surface care—all finished by hand with Chemical Guys and 3D Car Care products. No machine buffing.</p>
+<p class="hero-note">3D Bead It Up is a ceramic spray sealant, not a multi-year coating. Scratch reduction depends on clear-coat condition, and complete removal cannot be guaranteed. Services are subject to vehicle inspection.</p>
 <a class="btn" href="#quote">Build your quote</a>
 </div>
 <!-- Portrait appears automatically once the image asset is uploaded to assets/. -->
@@ -370,25 +370,25 @@ Manchester, New Hampshire · Hand-finished detailing</div>
 <div class="eyebrow">
 Our services</div>
 <h2>Exterior packages</h2>
-<p>Every exterior package includes hand washing, ceramic spray protection, and cleaning of accessible wheels and exterior brake components without disassembly.</p>
+<p>Every exterior package includes hand washing, 3D Bead It Up ceramic spray protection, and cleaning of accessible wheels and exterior brake components without disassembly.</p>
 <div class="grid">
 <div class="card package-card" role="button" tabindex="0" data-vehicle="sedan" aria-label="Select Sedan / Coupe package">
 <h3>Sedan / Coupe</h3>
 <div class="price">
 $125</div>
-<p>Hand wash, wheels and accessible brakes, 3D ceramic spray protection.</p>
+<p>Hand wash, wheels and accessible brakes, 3D Bead It Up ceramic spray protection.</p>
 </div>
 <div class="card package-card" role="button" tabindex="0" data-vehicle="suv" aria-label="Select SUV / Crossover package">
 <h3>SUV / Crossover</h3>
 <div class="price">
 $150</div>
-<p>Hand wash, wheels and accessible brakes, ceramic spray protection.</p>
+<p>Hand wash, wheels and accessible brakes, 3D Bead It Up ceramic spray protection.</p>
 </div>
 <div class="card package-card" role="button" tabindex="0" data-vehicle="large" aria-label="Select Large Truck / Van package">
 <h3>Large Truck / Van</h3>
 <div class="price">
 $175</div>
-<p>Hand wash, wheels and accessible brakes, ceramic spray protection.</p>
+<p>Hand wash, wheels and accessible brakes, 3D Bead It Up ceramic spray protection.</p>
 </div>
 </div>
 </div>
@@ -424,7 +424,7 @@ $175</div>
 <div class="wrap quote">
 <h2>Build an estimate</h2>
 <div class="card">
-<label>Vehicle type <select id="vehicle"><option value="sedan">Sedan / Coupe</option><option value="suv">SUV / Crossover</option><option value="large">Large Truck / Van</option></select></label><label><input id="exterior" type="checkbox" checked> Exterior wash + ceramic spray + wheel/brake cleaning</label><label><input id="interior" type="checkbox"> Interior surface detail</label><label>Headlight restoration <select id="headlights"><option value="0">None</option><option value="50">Single — $50</option><option value="100">Pair — $100</option></select></label><label>Clear-coat scratch reduction panels ($50 each) <input id="panels" type="number" min="0" max="20" value="0"></label><label><input id="plastic" type="checkbox"> Cerakote Cerakote plastic restoration (sedan $30 · SUV $40 · truck/van $50)</label><label><input id="glass" type="checkbox"> Glass cleaning + water repellency (+$40)</label><label><input id="rubber" type="checkbox"> Rubber/tire dressing + UV protection (+$50)</label><div class="price" id="total">
+<label>Vehicle type <select id="vehicle"><option value="sedan">Sedan / Coupe</option><option value="suv">SUV / Crossover</option><option value="large">Large Truck / Van</option></select></label><label><input id="exterior" type="checkbox" checked> Exterior wash + 3D Bead It Up ceramic spray + wheel/brake cleaning</label><label><input id="interior" type="checkbox"> Interior surface detail</label><label>Headlight restoration <select id="headlights"><option value="0">None</option><option value="50">Single — $50</option><option value="100">Pair — $100</option></select></label><label>Clear-coat scratch reduction panels ($50 each) <input id="panels" type="number" min="0" max="20" value="0"></label><label><input id="plastic" type="checkbox"> Cerakote Cerakote plastic restoration (sedan $30 · SUV $40 · truck/van $50)</label><label><input id="glass" type="checkbox"> Glass cleaning + water repellency (+$40)</label><label><input id="rubber" type="checkbox"> Rubber/tire dressing + UV protection (+$50)</label><div class="price" id="total">
 $125</div>
 <p id="summary"></p>
 <div class="quote-actions"><a id="email-quote" class="btn" href="mailto:Derek@derekverbrugge.com">Contact me about your quote</a><button id="copy" type="button">Copy itemized quote</button></div><p class="tag">Estimates subject to vehicle condition and inspection.</p>
@@ -448,7 +448,7 @@ let current="";
 function update() {
   let v=rates[$("vehicle").value],lines=[];
 const add=(n,p)=>lines.push([n,p]);
-if($("exterior").checked)add("Exterior wash + ceramic spray + wheels/brakes",v.exterior);
+if($("exterior").checked)add("Exterior wash + 3D Bead It Up ceramic spray + wheels/brakes",v.exterior);
 if($("interior").checked)add("Interior surface detail",v.interior);
 let h=Number($("headlights").value);
 if(h)add(h===50?"Single headlight restoration":"Pair of headlights restored",h);
