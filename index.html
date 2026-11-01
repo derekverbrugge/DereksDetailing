@@ -450,7 +450,11 @@ let current="";
 function update() {
   let v=rates[$("vehicle").value],lines=[];
 const add=(n,p)=>lines.push([n,p]);
-if($("exterior").checked)add("Exterior wash + 3D Bead It Up ceramic spray + wheels/brakes",v.exterior);
+/* TEC582 includes the final 3D Bead It Up topper, so avoid listing it twice. */
+$("exterior").parentElement.lastChild.textContent = $("tec582").checked
+  ? " Exterior wash + wheel/brake cleaning"
+  : " Exterior wash + 3D Bead It Up ceramic spray + wheel/brake cleaning";
+if($("exterior").checked)add($("tec582").checked?"Exterior wash + wheels/brakes":"Exterior wash + 3D Bead It Up ceramic spray + wheels/brakes",v.exterior);
 if($("interior").checked)add("Interior surface detail",v.interior);
 let h=Number($("headlights").value);
 if(h)add(h===50?"Single headlight restoration":"Pair of headlights restored",h);
