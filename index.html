@@ -186,6 +186,11 @@ font-size:12px}
  outline-offset: 3px;
  }
 
+
+/* Interactive package cards. */
+.package-card { cursor: pointer; transition: border-color .2s, transform .2s; }
+.package-card:hover, .package-card:focus-visible { border-color: var(--purple, #b48aff); transform: translateY(-2px); }
+.package-card::after { content: "Select package →"; display: block; margin-top: 14px; color: var(--purple, #b48aff); font-weight: 700; }
 </style><script src="includes.js" defer>
 </script>
 </head>
@@ -207,19 +212,19 @@ Our services</div>
 <h2>Exterior packages</h2>
 <p>Every exterior package includes hand washing, ceramic spray protection, and cleaning of accessible wheels and exterior brake components without disassembly.</p>
 <div class="grid">
-<div class="card">
+<div class="card package-card" role="button" tabindex="0" data-vehicle="sedan" aria-label="Select Sedan / Coupe package">
 <h3>Sedan / Coupe</h3>
 <div class="price">
 $125</div>
 <p>Hand wash, wheels and accessible brakes, 3D ceramic spray protection.</p>
 </div>
-<div class="card">
+<div class="card package-card" role="button" tabindex="0" data-vehicle="suv" aria-label="Select SUV / Crossover package">
 <h3>SUV / Crossover</h3>
 <div class="price">
 $150</div>
 <p>Hand wash, wheels and accessible brakes, ceramic spray protection.</p>
 </div>
-<div class="card">
+<div class="card package-card" role="button" tabindex="0" data-vehicle="large" aria-label="Select Large Truck / Van package">
 <h3>Large Truck / Van</h3>
 <div class="price">
 $175</div>
@@ -303,5 +308,23 @@ current="DEREK'S DETAILING — ESTIMATE\nVehicle: "+v.name+"\n"+lines.map(x=>x[0
 document.querySelectorAll("input,select").forEach(e=>e.addEventListener("input",update));
 $("copy").addEventListener("click",()=>navigator.clipboard.writeText(current).then(()=>$("copy").textContent="Copied!").catch(()=>alert("Copy unavailable in this browser")));
 update();
+
+/* Selecting a package sets the vehicle and includes the exterior service. */
+function selectPackage(card) {
+  $("vehicle").value = card.dataset.vehicle;
+  $("exterior").checked = true;
+  update();
+  $("quote").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+document.querySelectorAll(".package-card").forEach((card) => {
+  card.addEventListener("click", () => selectPackage(card));
+  card.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      selectPackage(card);
+    }
+  });
+});
 </script>
 </body></html>
