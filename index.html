@@ -409,9 +409,9 @@ $175</div>
 <div class="row">
 <span>Interior surface detail · large truck / van</span><strong>$80</strong></div>
 <!-- Plastic trim restoration is priced by vehicle size. -->
-<div class="row"><span>Plastic restoration · sedan / coupe</span><strong>$30</strong></div>
-<div class="row"><span>Plastic restoration · SUV / crossover</span><strong>$40</strong></div>
-<div class="row"><span>Plastic restoration · large truck / van</span><strong>$50</strong></div>
+<div class="row"><span>Cerakote Cerakote plastic restoration · sedan / coupe</span><strong>$30</strong></div>
+<div class="row"><span>Cerakote Cerakote plastic restoration · SUV / crossover</span><strong>$40</strong></div>
+<div class="row"><span>Cerakote Cerakote plastic restoration · large truck / van</span><strong>$50</strong></div>
 <div class="row">
 <span>Glass cleaning + water-repellent treatment</span><strong>+$40</strong></div>
 <div class="row">
@@ -424,7 +424,7 @@ $175</div>
 <div class="wrap quote">
 <h2>Build an estimate</h2>
 <div class="card">
-<label>Vehicle type <select id="vehicle"><option value="sedan">Sedan / Coupe</option><option value="suv">SUV / Crossover</option><option value="large">Large Truck / Van</option></select></label><label><input id="exterior" type="checkbox" checked> Exterior wash + ceramic spray + wheel/brake cleaning</label><label><input id="interior" type="checkbox"> Interior surface detail</label><label>Headlight restoration <select id="headlights"><option value="0">None</option><option value="50">Single — $50</option><option value="100">Pair — $100</option></select></label><label>Clear-coat scratch reduction panels ($50 each) <input id="panels" type="number" min="0" max="20" value="0"></label><label><input id="plastic" type="checkbox"> Plastic restoration (sedan $30 · SUV $40 · truck/van $50)</label><label><input id="glass" type="checkbox"> Glass cleaning + water repellency (+$40)</label><label><input id="rubber" type="checkbox"> Rubber/tire dressing + UV protection (+$50)</label><div class="price" id="total">
+<label>Vehicle type <select id="vehicle"><option value="sedan">Sedan / Coupe</option><option value="suv">SUV / Crossover</option><option value="large">Large Truck / Van</option></select></label><label><input id="exterior" type="checkbox" checked> Exterior wash + ceramic spray + wheel/brake cleaning</label><label><input id="interior" type="checkbox"> Interior surface detail</label><label>Headlight restoration <select id="headlights"><option value="0">None</option><option value="50">Single — $50</option><option value="100">Pair — $100</option></select></label><label>Clear-coat scratch reduction panels ($50 each) <input id="panels" type="number" min="0" max="20" value="0"></label><label><input id="plastic" type="checkbox"> Cerakote Cerakote plastic restoration (sedan $30 · SUV $40 · truck/van $50)</label><label><input id="glass" type="checkbox"> Glass cleaning + water repellency (+$40)</label><label><input id="rubber" type="checkbox"> Rubber/tire dressing + UV protection (+$50)</label><div class="price" id="total">
 $125</div>
 <p id="summary"></p>
 <div class="quote-actions"><a id="email-quote" class="btn" href="mailto:Derek@derekverbrugge.com">Contact me about your quote</a><button id="copy" type="button">Copy itemized quote</button></div><p class="tag">Estimates subject to vehicle condition and inspection.</p>
@@ -454,7 +454,7 @@ let h=Number($("headlights").value);
 if(h)add(h===50?"Single headlight restoration":"Pair of headlights restored",h);
 let n=Math.max(0,Math.min(20,Math.floor(Number($("panels").value)||0)));
 if(n)add("Clear-coat scratch reduction ("+n+" panels)",n*50);
-if($("plastic").checked)add("Plastic restoration",v.plastic);
+if($("plastic").checked)add("Cerakote Cerakote plastic restoration",v.plastic);
 if($("glass").checked)add("Glass cleaning + water repellency",40);
 if($("rubber").checked)add("Rubber/tire dressing + UV protection",50);
 let sum=lines.reduce((s,x)=>s+x[1],0);
