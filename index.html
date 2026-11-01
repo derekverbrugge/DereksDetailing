@@ -286,6 +286,8 @@ font-size:12px}
   .site-header .navlinks a { font-size: 11px; }
   .site-header nav { gap: 6px; }
 }
+.quote-actions { display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+.quote-actions .btn { text-align:center; }
 </style><script src="includes.js?v=20261101-5" defer>
 </script>
 </head>
@@ -382,7 +384,7 @@ $175</div>
 <label>Vehicle type <select id="vehicle"><option value="sedan">Sedan / Coupe</option><option value="suv">SUV / Crossover</option><option value="large">Large Truck / Van</option></select></label><label><input id="exterior" type="checkbox" checked> Exterior wash + ceramic spray + wheel/brake cleaning</label><label><input id="interior" type="checkbox"> Interior surface detail</label><label>Headlight restoration <select id="headlights"><option value="0">None</option><option value="50">Single — $50</option><option value="100">Pair — $100</option></select></label><label>Clear-coat scratch reduction panels ($50 each) <input id="panels" type="number" min="0" max="20" value="0"></label><label><input id="glass" type="checkbox"> Glass cleaning + water repellency (+$40)</label><label><input id="rubber" type="checkbox"> Rubber/tire dressing + UV protection (+$50)</label><div class="price" id="total">
 $125</div>
 <p id="summary"></p>
-<button id="copy" type="button">Copy itemized quote</button><p class="tag">Estimates subject to vehicle condition and inspection.</p>
+<div class="quote-actions"><button id="copy" type="button">Copy itemized quote</button><a id="email-quote" class="btn" href="mailto:Derek@derekverbrugge.com">Contact me about your quote</a></div><p class="tag">Estimates subject to vehicle condition and inspection.</p>
 </div>
 </div>
 </section>
@@ -408,22 +410,31 @@ if($("interior").checked)add("Interior surface detail",v.interior);
 let h=Number($("headlights").value);
 if(h)add(h===50?"Single headlight restoration":"Pair of headlights restored",h);
 let n=Math.max(0,Math.min(20,Math.floor(Number($("panels").value)||0)));
-if(n)add("Scratch reduction ("+n+" panels)",n*50);
+if(n)add("Clear-coat scratch reduction ("+n+" panels)",n*50);
 if($("glass").checked)add("Glass cleaning + water repellency",40);
 if($("rubber").checked)add("Rubber/tire dressing + UV protection",50);
 let sum=lines.reduce((s,x)=>s+x[1],0);
 $("total").textContent="$"+sum;
 $("summary").textContent=lines.map(x=>x[0]+" — $"+x[1]).join(" | ");
 current="DEREK'S DETAILING — ESTIMATE\nVehicle: "+v.name+"\n"+lines.map(x=>x[0]+": $"+x[1]).join("\n")+"\nTOTAL: $"+sum+"\nSubject to vehicle condition and inspection."}
+/* Prepare an email from the live quote without sending it automatically. */
+function updateEmailLink() {
+  const subject = "Derek\u0027s Detailing - Quote Inquiry";
+  const body = "Hi Derek,\n\nI would like to ask about this detailing quote:\n\n" + current + "\n\nName:\nVehicle year/make/model:\nQuestions or preferred date:\n";
+  $("email-quote").href = "mailto:Derek@derekverbrugge.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+}
 document.querySelectorAll("input,select").forEach(e=>e.addEventListener("input",update));
+document.querySelectorAll("input,select").forEach(e=>e.addEventListener("input",updateEmailLink));
 $("copy").addEventListener("click",()=>navigator.clipboard.writeText(current).then(()=>$("copy").textContent="Copied!").catch(()=>alert("Copy unavailable in this browser")));
 update();
+updateEmailLink();
 
 /* Selecting a package sets the vehicle and includes the exterior service. */
 function selectPackage(card) {
   $("vehicle").value = card.dataset.vehicle;
   $("exterior").checked = true;
   update();
+  updateEmailLink();
   $("quote").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
