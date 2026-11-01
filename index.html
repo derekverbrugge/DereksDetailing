@@ -286,10 +286,25 @@ font-size:12px}
   .site-header .navlinks a { font-size: 11px; }
   .site-header nav { gap: 6px; }
 }
-</style><script src="includes.js?v=20261101-3" defer>
+</style><script src="includes.js?v=20261101-5" defer>
 </script>
 </head>
-<body id="top"><div id="site-header">
+<body id="top"><!-- Static fallback ensures navigation remains usable if JavaScript or a fragment request fails. -->
+<div id="site-header">
+<!-- Floating navigation shared across the site. -->
+<header class="site-header">
+  <div class="wrap">
+    <nav aria-label="Main navigation">
+      <!-- The business name is the wordmark; no icon or logomark. -->
+      <a class="brand" href="#top">Derek's Detailing</a>
+      <div class="navlinks">
+        <a href="#services">Services</a>
+        <a href="#addons">Add-Ons</a>
+        <a href="#quote" class="btn">Get a Quote!</a>
+      </div>
+    </nav>
+  </div>
+</header>
 </div>
 <main>
 <div class="hero">
