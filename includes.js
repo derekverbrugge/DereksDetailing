@@ -3,7 +3,8 @@
  * The fragments are requested relative to the GitHub Pages site root.
  */
 async function includePart(elementId, path) {
-  const response = await fetch(path);
+  // Always revalidate shared fragments so navigation edits appear promptly.
+  const response = await fetch(path, { cache: "no-store" });
 
   if (!response.ok) {
     throw new Error("Unable to load " + path + ": HTTP " + response.status);
