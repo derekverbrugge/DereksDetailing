@@ -419,9 +419,9 @@ $150</div>
 <div class="row">
 <span>TEC582 premium ceramic spray layer, topped with 3D Bead It Up · any vehicle</span><strong>+$25</strong></div>
 <div class="row">
-<span>Glass cleaning + Rain-X water-repellent glass treatment</span><strong>+$40</strong></div>
+<span>Glass cleaning + Rain-X water-repellent glass treatment</span><strong>+$35</strong></div>
 <div class="row">
-<span>Rubber and tire dressing + UV protection</span><strong>+$50</strong></div>
+<span>Rubber and tire dressing + UV protection</span><strong>+$35</strong></div>
 <p>Rain-X water-repellent glass treatment helps rain bead and roll off exterior glass and makes salt spray and road grime easier to clear during winter driving. It does not melt ice or replace winter washer fluid. Glass is cleaned before application; results vary with conditions and use.</p><p>Interior surface detail covers dashboard, console, door panels and compatible hard surfaces;
  excludes floors, carpets, vacuuming, upholstery extraction and deep seat cleaning.</p>
 </div>
@@ -430,7 +430,7 @@ $150</div>
 <div class="wrap quote">
 <h2>Build an estimate</h2>
 <div class="card">
-<label class="quote-field">Vehicle type <select id="vehicle"><option value="sedan">Sedan / Coupe</option><option value="suv">SUV / Crossover</option><option value="large">Large Truck / Van</option></select></label><label><input id="exterior" type="checkbox" checked> Exterior wash + 3D Bead It Up ceramic spray + wheel/brake cleaning</label><label><input id="tec582" type="checkbox"> TEC582 premium ceramic protection, finished with 3D Bead It Up (+$25, any vehicle)</label><label><input id="interior" type="checkbox"> Interior surface detail</label><label class="quote-field">Headlight restoration <select id="headlights"><option value="0">None</option><option value="50">Single — $50</option><option value="100">Pair — $100</option></select></label><label class="quote-field">Clear-coat scratch reduction panels ($50 each) <input id="panels" type="number" min="0" max="20" value="0"></label><label><input id="plastic" type="checkbox"> Cerakote plastic restoration (sedan $30 · SUV $40 · truck/van $50)</label><label><input id="glass" type="checkbox"> Glass cleaning + Rain-X water-repellent treatment (+$40)</label><label><input id="rubber" type="checkbox"> Rubber/tire dressing + UV protection (+$50)</label><div class="price" id="total">
+<label class="quote-field">Vehicle type <select id="vehicle"><option value="sedan">Sedan / Coupe</option><option value="suv">SUV / Crossover</option><option value="large">Large Truck / Van</option></select></label><label><input id="exterior" type="checkbox" checked> Exterior wash + 3D Bead It Up ceramic spray + wheel/brake cleaning</label><label><input id="tec582" type="checkbox"> TEC582 premium ceramic protection, finished with 3D Bead It Up (+$25, any vehicle)</label><label><input id="interior" type="checkbox"> Interior surface detail</label><label class="quote-field">Headlight restoration <select id="headlights"><option value="0">None</option><option value="50">Single — $50</option><option value="100">Pair — $100</option></select></label><label class="quote-field">Clear-coat scratch reduction panels ($50 each) <input id="panels" type="number" min="0" max="20" value="0"></label><label><input id="plastic" type="checkbox"> Cerakote plastic restoration (sedan $30 · SUV $40 · truck/van $50)</label><label><input id="glass" type="checkbox"> Glass cleaning + Rain-X water-repellent treatment (+$35)</label><label><input id="rubber" type="checkbox"> Rubber/tire dressing + UV protection (+$35)</label><div class="price" id="total">
 $115</div>
 <p id="summary"></p>
 <div class="quote-actions"><a id="email-quote" class="btn" href="mailto:Derek@derekverbrugge.com">Contact me about your quote</a><button id="copy" type="button">Copy itemized quote</button></div><p class="tag">Estimates subject to vehicle condition and inspection.</p>
@@ -462,8 +462,8 @@ setLabel("exterior", $("tec582").checked
 setLabel("tec582","TEC582 premium ceramic protection, finished with 3D Bead It Up (+$25)");
 setLabel("interior","Interior surface detail (+$"+v.interior+")");
 setLabel("plastic","Cerakote plastic restoration (+$"+v.plastic+")");
-setLabel("glass","Glass cleaning + Rain-X water-repellent treatment (+$40)");
-setLabel("rubber","Rubber/tire dressing + UV protection (+$50)");
+setLabel("glass","Glass cleaning + Rain-X water-repellent treatment (+$35)");
+setLabel("rubber","Rubber/tire dressing + UV protection (+$35)");
 /* TEC582 includes the final 3D Bead It Up topper, so avoid listing it twice. */
 
 if($("exterior").checked)add($("tec582").checked?"Exterior wash + wheels/brakes":"Exterior wash + 3D Bead It Up ceramic spray + wheels/brakes",v.exterior);
@@ -474,8 +474,8 @@ let n=Math.max(0,Math.min(20,Math.floor(Number($("panels").value)||0)));
 if(n)add("Clear-coat scratch reduction ("+n+" panels)",n*50);
 if($("plastic").checked)add("Cerakote plastic restoration",v.plastic);
 if($("tec582").checked)add("TEC582 premium ceramic spray layer + 3D Bead It Up topper",25);
-if($("glass").checked)add("Glass cleaning + Rain-X water-repellent glass treatment",40);
-if($("rubber").checked)add("Rubber/tire dressing + UV protection",50);
+if($("glass").checked)add("Glass cleaning + Rain-X water-repellent glass treatment",35);
+if($("rubber").checked)add("Rubber/tire dressing + UV protection",35);
 let sum=lines.reduce((s,x)=>s+x[1],0);
 $("total").textContent="$"+sum;
 $("summary").textContent=lines.map(x=>x[0]+" — $"+x[1]).join(" | ");
